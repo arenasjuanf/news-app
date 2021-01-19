@@ -11,7 +11,9 @@ import { NoticiasService } from "src/app/services/noticias.service";
 })
 export class Tab2Page implements OnInit, AfterViewInit {
   @ViewChild("segment") segment: IonSegment;
-
+  
+  private categoryPage: number = 0;
+  
   public categories: string[] = [
     "business",
     "entertainment",
@@ -21,6 +23,7 @@ export class Tab2Page implements OnInit, AfterViewInit {
     "sports",
     "technology",
   ];
+
   noticias: Article[] = [];
 
   constructor(private NoticiasService: NoticiasService) {}
@@ -29,22 +32,29 @@ export class Tab2Page implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.segment.value = this.categories[0];
+    this.NoticiasService.currentCategory = this.segment.value;
+    console.log('init');
     this.getNews(this.segment.value);
   }
 
-  getNews(category: string){
-     this.NoticiasService.getTopHeadLinesCategory(category).subscribe(
-       (news: RespuestaTopHeadlines) => {
-         console.log(news);
-         this.noticias.push(...news.articles);
-       }
-     );
+  getNews(category: string, event?) {
+    this.NoticiasService.getTopHeadLinesCategory(category).subscribe(
+      (news:any) => {
+        this.noticias.push(...news.articles);
+        if(event){
+          event.target.complete();
+        }
+      }
+    )
   }
 
-  categoryChange( event ){
-    const category: string = event.detail.value
+  categoryChange(event) {
+    const category: string = event.detail.value;
     this.noticias = [];
     this.getNews(category);
   }
 
+  loadData(event) {
+    this.getNews(this.segment.value, event);
+  }
 }

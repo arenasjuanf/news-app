@@ -1,15 +1,20 @@
-<ion-card class="gris" >
+<ion-card class="gris">
   <ion-card-header>
     <ion-card-subtitle>
       <span class="text-primary"> {{ position }} </span>
       <span class="noticia-source-name"> {{ new.source.name }} </span>
+      <div class="noticia-more">
+        <ion-button (click)="openMenu()"  fill="clear" color="primary">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+      </div>
     </ion-card-subtitle>
-    <ion-card-title class="blanco">
+    <ion-card-title class="blanco" (click)="openUrl()">
       {{ new.title }}
     </ion-card-title>
   </ion-card-header>
 
-  <ion-img  *ngIf="new?.urlToImage" [src]="new.urlToImage">
+  <ion-img  *ngIf="new?.urlToImage" [src]="new.urlToImage" (click)="openUrl()">
   </ion-img>
 
   <ion-card-content>

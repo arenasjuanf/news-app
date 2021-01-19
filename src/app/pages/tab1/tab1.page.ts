@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/interfaces/interfaces';
 import { NoticiasService } from 'src/app/services/noticias.service';
-import { delay } from "rxjs/operators";
 
 
 @Component({
@@ -12,6 +11,8 @@ import { delay } from "rxjs/operators";
 export class Tab1Page implements OnInit{
 
   noticias: Article[] = []
+  resp: import("c:/xampp/htdocs/news-app/news-app/src/app/interfaces/interfaces").RespuestaTopHeadlines;
+  msg: any;
 
   constructor( private noticiasService: NoticiasService) {
   }
@@ -26,8 +27,8 @@ export class Tab1Page implements OnInit{
 
 
   getNews(event?){
-    this.noticiasService.getTopHeadlines().pipe(delay(1000)).subscribe((resp) => {
-      console.log(resp);
+    this.noticiasService.getTopHeadlines().subscribe((resp:any) => {
+      this.resp = resp;
       this.noticias.push(...resp.articles);
 
       if (resp.articles.length === 0) {
@@ -38,7 +39,7 @@ export class Tab1Page implements OnInit{
       if(event){
         event.target.complete();
       }
-    });
+    }, (err) => this.msg = err);
   }
 
 }
