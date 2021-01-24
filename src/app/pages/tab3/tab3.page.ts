@@ -17,7 +17,6 @@ export class Tab3Page {
 
   async getFavorites(){
     this.favorites =  await this.storage.loadFavorites() || [];
-    console.log(this.favorites);
   }
 
 }

@@ -7,9 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="dark">
-  <app-noticias *ngIf="favorites.length > 0" [noticias]="favorites" ></app-noticias>
-
-
+  <app-noticias *ngIf="favorites.length > 0" [noticias]="favorites" [enFavoritos]='true'></app-noticias>
   <div *ngIf="favorites.length === 0" class="no-favorites">
     <ion-title class="ion-text-capitalize">
       there aren't favorites :(

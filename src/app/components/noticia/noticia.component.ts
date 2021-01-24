@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/interfaces/interfaces';
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -14,12 +14,13 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class NoticiaComponent implements OnInit {
   @Input() new: Article;
   @Input() position: number;
-
+  @Input()enFavoritos = false;
   constructor(
     private iab: InAppBrowser,
     private actionSheetController: ActionSheetController,
     private sharing: SocialSharing,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {}
@@ -42,11 +43,11 @@ export class NoticiaComponent implements OnInit {
         },
         {
           cssClass: "action-dark",
-          text: "Save on Favorite",
+          text: `${this.enFavoritos ? 'Delete' : 'Save'} Favorite`,
           icon: "star",
           handler: () => {
-           this.storage.savefavorite(this.new);
-          },
+           this.storage.savefavorite(this.new).then(()=> this.showToast(this.enFavoritos ? 'Deleted' : 'Saved'));
+          }
         },
         {
           cssClass: "action-dark",
@@ -54,7 +55,7 @@ export class NoticiaComponent implements OnInit {
           icon: "close",
           //role: "cancel",
           handler: () => {
-            console.log("Cancel clicked");
+
           },
         },
       ],
@@ -66,5 +67,17 @@ export class NoticiaComponent implements OnInit {
   share(){
     this.sharing.share(this.new.title, this.new.source.name,'', this.new.url);
   }
+
+
+  async showToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: `${mensaje} news`,
+      position: 'top',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
 
 }

@@ -26,7 +26,7 @@ export class NoticiasService {
   getTopHeadlines() {
     this.headlinesPage++;
     return this.query<RespuestaTopHeadlines>(
-      `/top-headlines?country=co&page=${this.headlinesPage}`
+      `/top-headlines?country=us&page=${this.headlinesPage}`
     );
   }
 
@@ -39,7 +39,7 @@ export class NoticiasService {
     }
 
     return this.query<RespuestaTopHeadlines>(
-      `/top-headlines?country=co&category=${category}&page=${this.categoryPage}`
+      `/top-headlines?country=us&category=${category}&page=${this.categoryPage}`
     );
   }
 }

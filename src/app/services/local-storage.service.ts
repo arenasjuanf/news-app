@@ -14,25 +14,24 @@ export class LocalStorageService {
   }
 
   async loadFavorites(){
-    this.news = await this.storage.get('favorites');
-    return this.news;
+    this.news = await this.storage.get('favorites') || [];
+    return this.news ;
   }
 
   async savefavorite( noticia:Article){
-
-    const exist = this.news.find((not) => not.title === noticia.title);
-    console.log(exist);
-    if(!exist){
+    
+    const exist = this.news?.findIndex((not) => not.title === noticia.title);
+    
+    if(exist === -1){
       this.news.unshift(noticia);
-      await this.storage.set("favorites", this.news);
-      const toast = await this.toast.create({
-        message: 'Saved',
-        position: 'top'
-      });
-      toast.present();
-
-
+    }else{
+      this.news.splice(exist,1);
     }
+    this.updateFavorites();
+  }
+
+  async updateFavorites(){
+    await this.storage.set("favorites", this.news).then(()=> console.log('guardado'));
   }
 
 }

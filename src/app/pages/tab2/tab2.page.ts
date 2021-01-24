@@ -11,6 +11,7 @@ import { NoticiasService } from "src/app/services/noticias.service";
 })
 export class Tab2Page implements OnInit, AfterViewInit {
   @ViewChild("segment") segment: IonSegment;
+  loading = false;
   
   private categoryPage: number = 0;
   
@@ -33,14 +34,15 @@ export class Tab2Page implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.segment.value = this.categories[0];
     this.NoticiasService.currentCategory = this.segment.value;
-    console.log('init');
     this.getNews(this.segment.value);
   }
 
   getNews(category: string, event?) {
+    this.loading = true;
     this.NoticiasService.getTopHeadLinesCategory(category).subscribe(
       (news:any) => {
         this.noticias.push(...news.articles);
+        this.loading = false;
         if(event){
           event.target.complete();
         }

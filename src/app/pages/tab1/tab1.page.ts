@@ -9,9 +9,9 @@ import { NoticiasService } from 'src/app/services/noticias.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-
+  loading = false;
   noticias: Article[] = []
-  resp: import("c:/xampp/htdocs/news-app/news-app/src/app/interfaces/interfaces").RespuestaTopHeadlines;
+  resp: import("src/app/interfaces/interfaces").RespuestaTopHeadlines;
   msg: any;
 
   constructor( private noticiasService: NoticiasService) {
@@ -27,10 +27,11 @@ export class Tab1Page implements OnInit{
 
 
   getNews(event?){
+    this.loading = true;
     this.noticiasService.getTopHeadlines().subscribe((resp:any) => {
       this.resp = resp;
       this.noticias.push(...resp.articles);
-
+      this.loading = false;
       if (resp.articles.length === 0) {
         event.target.disabled = true;
         return;
