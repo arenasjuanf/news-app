@@ -1,0 +1,5 @@
+juannews/app/test/BuildConfig.java
+ juannews.app.test.BuildConfig
+juannews/app/test/MainActivity.java
+ juannews.app.test.MainActivity
+ juannews.app.test.MainActivity$1

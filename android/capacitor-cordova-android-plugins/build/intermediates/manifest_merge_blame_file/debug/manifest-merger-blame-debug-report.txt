@@ -1,0 +1,56 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+3    xmlns:android="http://schemas.android.com/apk/res/android"
+4    package="capacitor.android.plugins"
+5    android:versionCode="1"
+6    android:versionName="1.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="21"
+9-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+10        android:targetSdkVersion="29" />
+10-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml
+11
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:15:1-62
+12-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:15:18-60
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:16:1-76
+13-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:16:18-74
+14
+15    <application>
+15-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:5:1-14:15
+16        <receiver
+16-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:1-10:12
+17            android:name="nl.xservices.plugins.ShareChooserPendingIntent"
+17-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:11-72
+18            android:enabled="true" >
+18-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:6:73-95
+19            <intent-filter>
+19-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:7:3-9:19
+20                <action android:name="android.intent.action.SEND" />
+20-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:5-56
+20-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:8:13-54
+21            </intent-filter>
+22        </receiver>
+23
+24        <provider
+24-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:1-13:12
+25            android:name="nl.xservices.plugins.FileProvider"
+25-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:127-175
+26            android:authorities="${applicationId}.sharing.provider"
+26-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:11-66
+27            android:exported="false"
+27-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:67-91
+28            android:grantUriPermissions="true" >
+28-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:11:92-126
+29            <meta-data
+29-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:3-104
+30                android:name="android.support.FILE_PROVIDER_PATHS"
+30-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:14-64
+31                android:resource="@xml/sharing_paths" />
+31-->C:\Users\Felipe\Desktop\news-app\android\capacitor-cordova-android-plugins\src\main\AndroidManifest.xml:12:65-102
+32        </provider>
+33    </application>
+34
+35</manifest>
