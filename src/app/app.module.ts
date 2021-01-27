@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { IonicStorageModule } from "@ionic/storage";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -19,6 +21,7 @@ import { IonicStorageModule } from "@ionic/storage";
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     InAppBrowser,
